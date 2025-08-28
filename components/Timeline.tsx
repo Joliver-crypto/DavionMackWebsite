@@ -73,11 +73,11 @@ export default function Timeline({ works }: TimelineProps) {
 
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full h-[100dvh] overflow-hidden">
       {/* Scroll Container */}
       <div 
         ref={scrollContainerRef}
-        className="h-full overflow-x-auto overflow-y-hidden scrollbar-hide"
+        className="h-full overflow-x-auto overflow-y-hidden scrollbar-hide touch-pan-x"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         <div className="relative h-full min-w-max">

@@ -85,7 +85,7 @@ export default function LightboxModal({ work, isOpen, onClose }: LightboxModalPr
               <img
                 src={work.cover}
                 alt={work.title}
-                className="max-h-[85vh] max-w-[90vw] w-auto h-auto border border-black"
+                className="max-h-[85dvh] max-w-[90vw] w-auto h-auto border border-black"
               />
             </div>
 
