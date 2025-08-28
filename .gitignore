@@ -1,0 +1,14 @@
+# dependencies
+node_modules/
+# builds
+.next/
+out/
+dist/
+build/
+.turbo/
+# env
+.env
+.env.local
+# OS/editor
+.DS_Store
+*.log
