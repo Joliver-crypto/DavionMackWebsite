@@ -50,10 +50,10 @@ export default function LightboxModal({ work, isOpen, onClose }: LightboxModalPr
       />
       
       {/* Modal Content */}
-      <div className="fixed inset-0 z-10 flex items-center justify-center p-4">
+      <div className="fixed inset-0 z-10 flex items-center justify-center p-2 md:p-4">
         <div
           ref={modalRef}
-          className="bg-white rounded-lg shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto focus-ring"
+          className="bg-white rounded-lg shadow-2xl w-full max-w-4xl max-h-[95dvh] md:max-h-[90vh] overflow-y-auto focus-ring"
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title"

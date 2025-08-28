@@ -7,6 +7,8 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
   }
   
   @media (prefers-reduced-motion: reduce) {
@@ -17,6 +19,10 @@
   
   body {
     @apply bg-white text-charcoal font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -39,9 +45,30 @@
   
   .modal-backdrop {
     @apply fixed inset-0 bg-white/70 backdrop-blur-sm;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
   }
   
   .focus-ring {
     @apply focus:outline-none focus:ring-2 focus:ring-charcoal focus:ring-offset-2;
+  }
+  
+  /* Mobile-specific fixes */
+  @media (max-width: 768px) {
+    .modal-backdrop {
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+  }
+  
+  /* Prevent iOS zoom on input focus */
+  input, textarea, select {
+    font-size: 16px;
+  }
+  
+  /* Fix iOS viewport height issues */
+  .h-screen-mobile {
+    height: 100vh;
+    height: 100dvh;
   }
 }

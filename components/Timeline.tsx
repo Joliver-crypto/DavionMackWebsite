@@ -73,7 +73,7 @@ export default function Timeline({ works }: TimelineProps) {
 
 
   return (
-    <div className="relative w-full h-[100dvh] overflow-hidden">
+    <div className="relative w-full h-screen-mobile overflow-hidden">
       {/* Scroll Container */}
       <div 
         ref={scrollContainerRef}
