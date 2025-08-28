@@ -74,9 +74,6 @@
   }
   
   /* Mobile container utilities */
-  .container-mobile {
-    @apply w-full max-w-[720px] mx-auto px-4 sm:px-6;
-  }
   
   /* Safe viewport height for modals */
   .safe-viewport-height {
