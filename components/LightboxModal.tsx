@@ -87,9 +87,9 @@ export default function LightboxModal({ work, isOpen, onClose }: LightboxModalPr
                     alt={work.title}
                     width={800}
                     height={800}
-                    className="w-auto h-auto max-h-[60dvh] md:max-h-[70vh] max-w-full border border-black rounded"
+                    className="w-auto h-auto safe-viewport-height max-w-full border border-black rounded"
                     style={{ objectFit: 'contain' }}
-                    sizes="(max-width: 640px) 95vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, 70vw"
+                    sizes="(max-width: 640px) 92vw, (max-width: 1024px) 60vw, 800px"
                     priority
                   />
                 </div>

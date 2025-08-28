@@ -23,6 +23,7 @@
     -moz-osx-font-smoothing: grayscale;
     overscroll-behavior: none;
     -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -70,5 +71,15 @@
   .h-screen-mobile {
     height: 100vh;
     height: 100dvh;
+  }
+  
+  /* Mobile container utilities */
+  .container-mobile {
+    @apply w-full max-w-[720px] mx-auto px-4 sm:px-6;
+  }
+  
+  /* Safe viewport height for modals */
+  .safe-viewport-height {
+    max-height: calc(100svh - 6rem);
   }
 }

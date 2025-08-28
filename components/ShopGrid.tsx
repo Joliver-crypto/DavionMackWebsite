@@ -21,7 +21,7 @@ export default function ShopGrid({ works }: ShopGridProps) {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 container-mobile">
       {availableWorks.map((work) => (
         <div
           key={work.slug}
@@ -34,7 +34,7 @@ export default function ShopGrid({ works }: ShopGridProps) {
               alt={work.title}
               fill
               className="object-cover"
-              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                              sizes="(max-width: 640px) 92vw, (max-width: 1024px) 60vw, 800px"
               priority
             />
           </div>
