@@ -1,3 +1,5 @@
+/** Change: Enhanced responsive design with improved typography and layout */
+
 import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -12,7 +14,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="container-responsive py-16">
         {/* Home Navigation */}
         <div className="mb-12">
           <Link
@@ -25,29 +27,29 @@ export default function AboutPage() {
 
         <div className="text-center mb-16">
           {/* Artist Photo */}
-          <div className="relative w-64 h-64 mx-auto mb-8">
+          <div className="relative w-48 h-48 sm:w-64 sm:h-64 mx-auto mb-8">
             <Image
               src={aboutData.photo}
               alt={aboutData.name}
               fill
               className="object-cover rounded-lg shadow-lg"
-              sizes="(max-width: 768px) 100vw, 256px"
+              sizes="(max-width: 640px) 192px, 256px"
             />
           </div>
 
           {/* Name */}
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-charcoal mb-4">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-charcoal mb-4 text-balance">
             {aboutData.name}
           </h1>
 
           {/* Degree Line */}
-          <p className="text-xl text-gray-600 mb-8">
+          <p className="text-xl text-gray-600 mb-8 text-balance">
             {aboutData.degreeLine}
           </p>
 
           {/* Bio */}
           <div className="max-w-2xl mx-auto mb-12 text-left">
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="text-lg text-gray-700 leading-relaxed text-balance">
               {aboutData.bio}
             </p>
           </div>
@@ -57,7 +59,7 @@ export default function AboutPage() {
             {/* CV Download */}
             <a
               href={aboutData.cv}
-              className="inline-flex items-center px-6 py-3 bg-charcoal text-white rounded-lg font-medium hover:bg-gray-800 transition-colors focus-ring"
+              className="btn-primary inline-flex items-center"
             >
               <Download size={20} className="mr-2" />
               Download CV
@@ -68,7 +70,7 @@ export default function AboutPage() {
               href={aboutData.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-6 py-3 border border-charcoal text-charcoal rounded-lg font-medium hover:bg-charcoal hover:text-white transition-colors focus-ring"
+              className="btn-secondary inline-flex items-center"
             >
               <Instagram size={20} className="mr-2" />
               Follow on Instagram

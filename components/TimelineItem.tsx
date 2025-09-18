@@ -1,3 +1,5 @@
+/** Change: Made timeline items responsive with mobile-optimized sizing */
+
 'use client'
 
 import { useState } from 'react'
@@ -10,17 +12,19 @@ interface TimelineItemProps {
   index: number
   total: number
   isLast: boolean
+  isMobile?: boolean
 }
 
-export default function TimelineItem({ work, index, total, isLast }: TimelineItemProps) {
+export default function TimelineItem({ work, index, total, isLast, isMobile = false }: TimelineItemProps) {
   const [isModalOpen, setIsModalOpen] = useState(false)
   
   // Calculate positioning - newest works on right, oldest on left
   // Reverse the index so newest (index 0) appears on the right
   const reversedIndex = total - 1 - index
   const isAbove = reversedIndex % 2 === 0
-  const horizontalOffset = reversedIndex * 480 // 480px spacing between items
-  const verticalOffset = isAbove ? -120 : 120 // 120px above/below center
+  const itemWidth = isMobile ? 280 : 480
+  const horizontalOffset = reversedIndex * itemWidth
+  const verticalOffset = isAbove ? (isMobile ? -80 : -120) : (isMobile ? 80 : 120)
   
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
@@ -41,13 +45,13 @@ export default function TimelineItem({ work, index, total, isLast }: TimelineIte
           onClick={openModal}
         >
           {/* Image container */}
-          <div className="w-80 h-80 relative border border-black/90 rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+          <div className={`${isMobile ? 'w-64 h-64' : 'w-80 h-80'} relative border border-black/90 rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-shadow`}>
             <Image
               src={work.cover}
               alt={work.title}
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              sizes={isMobile ? "280px" : "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"}
             />
             
             {/* Hover overlay */}
@@ -56,8 +60,8 @@ export default function TimelineItem({ work, index, total, isLast }: TimelineIte
           
           {/* Title */}
           <div className="mt-3 text-center">
-            <h3 className="text-lg font-medium text-charcoal">{work.title}</h3>
-            <p className="text-sm text-gray-600">{work.year}</p>
+            <h3 className={`${isMobile ? 'text-base' : 'text-lg'} font-medium text-charcoal text-balance`}>{work.title}</h3>
+            <p className={`${isMobile ? 'text-xs' : 'text-sm'} text-gray-600`}>{work.year}</p>
           </div>
         </div>
       </div>

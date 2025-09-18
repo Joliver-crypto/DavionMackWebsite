@@ -1,3 +1,5 @@
+/** Change: Enhanced responsive design with fluid typography and design tokens */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,6 +7,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @layer base {
+  :root {
+    /* Design Tokens */
+    --space-xs: 0.25rem;   /* 4px */
+    --space-sm: 0.5rem;    /* 8px */
+    --space-md: 1rem;      /* 16px */
+    --space-lg: 1.5rem;    /* 24px */
+    --space-xl: 2rem;      /* 32px */
+    --space-2xl: 3rem;     /* 48px */
+    --space-3xl: 4rem;     /* 64px */
+    --space-4xl: 6rem;     /* 96px */
+    
+    --radius-sm: 0.25rem;  /* 4px */
+    --radius-md: 0.5rem;   /* 8px */
+    --radius-lg: 0.75rem;  /* 12px */
+    --radius-xl: 1rem;     /* 16px */
+    
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    
+    /* Fluid Typography */
+    --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+    --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+    --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+    --text-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+    --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+    --text-2xl: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
+    --text-3xl: clamp(1.875rem, 1.5rem + 1.875vw, 2.25rem);
+    --text-4xl: clamp(2.25rem, 1.8rem + 2.25vw, 3rem);
+    --text-5xl: clamp(3rem, 2.4rem + 3vw, 3.75rem);
+  }
+
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
@@ -24,14 +58,37 @@
     overscroll-behavior: none;
     -webkit-overflow-scrolling: touch;
     overflow-x: hidden;
+    font-size: var(--text-base);
+    line-height: 1.6;
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;
+    line-height: 1.2;
   }
+  
+  h1 { font-size: var(--text-5xl); }
+  h2 { font-size: var(--text-4xl); }
+  h3 { font-size: var(--text-3xl); }
+  h4 { font-size: var(--text-2xl); }
+  h5 { font-size: var(--text-xl); }
+  h6 { font-size: var(--text-lg); }
 }
 
 @layer components {
+  /* Container utilities */
+  .container-responsive {
+    width: min(100% - var(--space-md), 1200px);
+    margin-inline: auto;
+    padding-inline: var(--space-md);
+  }
+  
+  .container-fluid {
+    width: 100%;
+    padding-inline: var(--space-md);
+  }
+  
+  /* Timeline components */
   .timeline-spine {
     @apply absolute left-1/2 top-0 bottom-0 w-px bg-gray-300;
   }
@@ -44,6 +101,7 @@
     @apply transform translate-y-1/2;
   }
   
+  /* Modal components */
   .modal-backdrop {
     @apply fixed inset-0 bg-white/70 backdrop-blur-sm;
     -webkit-backdrop-filter: blur(8px);
@@ -54,11 +112,39 @@
     @apply focus:outline-none focus:ring-2 focus:ring-charcoal focus:ring-offset-2;
   }
   
+  /* Button components */
+  .btn-primary {
+    @apply bg-charcoal text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors focus-ring;
+    min-height: 44px; /* Touch target */
+  }
+  
+  .btn-secondary {
+    @apply border border-charcoal text-charcoal px-6 py-3 rounded-lg font-medium hover:bg-charcoal hover:text-white transition-colors focus-ring;
+    min-height: 44px; /* Touch target */
+  }
+  
+  /* Card components */
+  .card {
+    @apply bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow;
+  }
+  
+  .card-body {
+    @apply p-4 md:p-6;
+  }
+  
   /* Mobile-specific fixes */
   @media (max-width: 768px) {
     .modal-backdrop {
       -webkit-backdrop-filter: none;
       backdrop-filter: none;
+    }
+    
+    .container-responsive {
+      padding-inline: var(--space-sm);
+    }
+    
+    .container-fluid {
+      padding-inline: var(--space-sm);
     }
   }
   
@@ -73,9 +159,31 @@
     height: 100dvh;
   }
   
-  
   /* Safe viewport height for modals */
   .safe-viewport-height {
     max-height: calc(100svh - 6rem);
+  }
+  
+  /* Responsive grid utilities */
+  .grid-responsive {
+    display: grid;
+    gap: var(--space-md);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  
+  .grid-responsive-sm {
+    display: grid;
+    gap: var(--space-sm);
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+  
+  /* Text utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Safe area support for iOS */
+  .safe-area-inset {
+    padding-bottom: calc(var(--space-md) + env(safe-area-inset-bottom));
   }
 }

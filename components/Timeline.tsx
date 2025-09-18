@@ -1,3 +1,5 @@
+/** Change: Completely redesigned timeline for mobile-first responsive design */
+
 'use client'
 
 import { useRef, useEffect, useState, useCallback } from 'react'
@@ -12,6 +14,7 @@ export default function Timeline({ works }: TimelineProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const timelineContainerRef = useRef<HTMLDivElement>(null)
   const [showScrollControls, setShowScrollControls] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   // Sort works by year (newest first) and then by index
   const sortedWorks = [...works].sort((a, b) => {
@@ -19,15 +22,26 @@ export default function Timeline({ works }: TimelineProps) {
     return works.indexOf(a) - works.indexOf(b)
   })
 
+  // Check if mobile viewport
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current
       const currentScrollLeft = container.scrollLeft
-      const itemWidth = 480 // Width of each artwork item
+      const itemWidth = isMobile ? 280 : 480 // Responsive item width
       
       // Find the current position and jump to the previous item
       const currentItemIndex = Math.round(currentScrollLeft / itemWidth)
-      const targetScrollLeft = (currentItemIndex - 1) * itemWidth
+      const targetScrollLeft = Math.max(0, (currentItemIndex - 1) * itemWidth)
       
       container.scrollTo({ left: targetScrollLeft, behavior: 'smooth' })
     }
@@ -37,17 +51,16 @@ export default function Timeline({ works }: TimelineProps) {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current
       const currentScrollLeft = container.scrollLeft
-      const itemWidth = 480 // Width of each artwork item
+      const itemWidth = isMobile ? 280 : 480 // Responsive item width
+      const maxScroll = container.scrollWidth - container.clientWidth
       
       // Find the current position and jump to the next item
       const currentItemIndex = Math.round(currentScrollLeft / itemWidth)
-      const targetScrollLeft = (currentItemIndex + 1) * itemWidth
+      const targetScrollLeft = Math.min(maxScroll, (currentItemIndex + 1) * itemWidth)
       
       container.scrollTo({ left: targetScrollLeft, behavior: 'smooth' })
     }
   }
-
-
 
   useEffect(() => {
     const container = scrollContainerRef.current
@@ -60,17 +73,15 @@ export default function Timeline({ works }: TimelineProps) {
     container.addEventListener('scroll', handleScroll)
     
     // Set initial scroll position to center the first (newest) artwork
-    // Account for the right padding (50vw) and center the first item
-    const totalWidth = (sortedWorks.length + 1) * 480 + 120 // +1 for placeholder + 120px extra spacing
+    const itemWidth = isMobile ? 280 : 480
+    const totalWidth = (sortedWorks.length + 1) * itemWidth + (isMobile ? 40 : 120)
     const containerWidth = container.clientWidth
-    const rightPadding = containerWidth / 2 // 50vw = half the container width
-    const firstItemCenter = totalWidth - rightPadding - 240 // 240 = half of item width (480/2)
-    container.scrollLeft = firstItemCenter
+    const rightPadding = containerWidth / 2
+    const firstItemCenter = totalWidth - rightPadding - (itemWidth / 2)
+    container.scrollLeft = Math.max(0, firstItemCenter)
 
     return () => container.removeEventListener('scroll', handleScroll)
-  }, [sortedWorks.length])
-
-
+  }, [sortedWorks.length, isMobile])
 
   return (
     <div className="relative w-full h-screen-mobile overflow-hidden">
@@ -85,14 +96,20 @@ export default function Timeline({ works }: TimelineProps) {
           <div ref={timelineContainerRef} className="relative h-full flex items-center pr-[50vw]">
 
             {/* Placeholder for future artwork */}
-            <div id="comingSoonCard" className="absolute cursor-default" style={{ left: `${(sortedWorks.length * 480) + 120}px` }}>
+            <div 
+              id="comingSoonCard" 
+              className="absolute cursor-default" 
+              style={{ 
+                left: `${(sortedWorks.length * (isMobile ? 280 : 480)) + (isMobile ? 40 : 120)}px` 
+              }}
+            >
               <div className="relative mb-6">
                 {/* Placeholder container */}
-                <div className="w-80 h-80 relative border-2 border-dashed border-gray-300 rounded-sm bg-gray-50 flex items-center justify-center">
+                <div className={`${isMobile ? 'w-64 h-64' : 'w-80 h-80'} relative border-2 border-dashed border-gray-300 rounded-sm bg-gray-50 flex items-center justify-center`}>
                   <div className="text-center text-gray-500">
-                    <div className="text-2xl font-serif font-medium mb-2">In The Works</div>
-                    <div className="text-lg">Coming Soon</div>
-                    <div className="text-sm mt-2">2025</div>
+                    <div className={`${isMobile ? 'text-lg' : 'text-2xl'} font-serif font-medium mb-2`}>In The Works</div>
+                    <div className={`${isMobile ? 'text-base' : 'text-lg'}`}>Coming Soon</div>
+                    <div className={`${isMobile ? 'text-xs' : 'text-sm'} mt-2`}>2025</div>
                   </div>
                 </div>
               </div>
@@ -106,33 +123,36 @@ export default function Timeline({ works }: TimelineProps) {
                 index={index}
                 total={sortedWorks.length}
                 isLast={index === sortedWorks.length - 1}
+                isMobile={isMobile}
               />
             ))}
           </div>
         </div>
       </div>
 
-      {/* Scroll Controls */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4">
-        <button
-          onClick={scrollLeft}
-          className="bg-white/80 hover:bg-white border border-gray-200 rounded-full p-3 shadow-sm transition-all focus-ring"
-          aria-label="Scroll left to older works"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <button
-          onClick={scrollRight}
-          className="bg-white/80 hover:bg-white border border-gray-200 rounded-full p-3 shadow-sm transition-all focus-ring"
-          aria-label="Scroll right to newer works"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-      </div>
+      {/* Scroll Controls - Hidden on mobile for touch scrolling */}
+      {!isMobile && (
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4">
+          <button
+            onClick={scrollLeft}
+            className="bg-white/80 hover:bg-white border border-gray-200 rounded-full p-3 shadow-sm transition-all focus-ring"
+            aria-label="Scroll left to older works"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            onClick={scrollRight}
+            className="bg-white/80 hover:bg-white border border-gray-200 rounded-full p-3 shadow-sm transition-all focus-ring"
+            aria-label="Scroll right to newer works"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      )}
 
       {/* Custom scrollbar styles */}
       <style jsx>{`

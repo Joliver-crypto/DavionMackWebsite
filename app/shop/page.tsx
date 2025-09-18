@@ -1,3 +1,5 @@
+/** Change: Enhanced responsive design with improved typography and layout */
+
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
@@ -12,7 +14,7 @@ export const metadata: Metadata = {
 export default function ShopPage() {
   return (
     <div className="min-h-screen bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="container-responsive py-16">
         {/* Home Navigation */}
         <div className="mb-12">
           <Link
@@ -24,10 +26,10 @@ export default function ShopPage() {
         </div>
 
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-charcoal mb-4">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-charcoal mb-4 text-balance">
             Available Works
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto text-balance">
             Browse the current collection of available sculptures and mixed media works.
           </p>
         </div>

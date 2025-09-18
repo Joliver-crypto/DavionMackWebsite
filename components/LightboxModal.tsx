@@ -1,3 +1,5 @@
+/** Change: Enhanced responsive modal with better mobile experience */
+
 'use client'
 
 import { useEffect, useRef } from 'react'
@@ -62,7 +64,7 @@ export default function LightboxModal({ work, isOpen, onClose }: LightboxModalPr
           {/* Header */}
           <div className="flex justify-between items-start p-4 md:p-6 border-b border-gray-200">
             <div className="flex-1 min-w-0">
-              <h2 id="modal-title" className="text-lg md:text-xl lg:text-2xl font-serif font-semibold text-charcoal leading-tight">
+              <h2 id="modal-title" className="text-lg md:text-xl lg:text-2xl font-serif font-semibold text-charcoal leading-tight text-balance">
                 {work.title}
               </h2>
               <p className="text-base md:text-lg text-gray-600 mt-1">{work.year}</p>
@@ -100,7 +102,7 @@ export default function LightboxModal({ work, isOpen, onClose }: LightboxModalPr
                 <h3 className="text-lg md:text-xl font-serif font-medium text-charcoal">
                   Materials
                 </h3>
-                <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+                <p className="text-sm md:text-base text-gray-700 leading-relaxed text-balance">
                   {work.materials}
                 </p>
               </div>
@@ -108,7 +110,7 @@ export default function LightboxModal({ work, isOpen, onClose }: LightboxModalPr
               {/* Additional details */}
               {work.forSale && (
                 <div className="mt-4 md:mt-6 p-3 md:p-4 bg-gray-50 rounded-lg">
-                  <p className="text-xs md:text-sm text-gray-600">
+                  <p className="text-xs md:text-sm text-gray-600 text-balance">
                     This piece is available for purchase. 
                     <a 
                       href={`mailto:davionmack@outlook.com?subject=Artwork%20Enquiry:%20${encodeURIComponent(work.title)}`}
