@@ -47,7 +47,6 @@ export default function Header() {
           <Link 
             href="/" 
             className="text-xl sm:text-2xl font-serif font-semibold text-charcoal hover:text-gray-600 transition-colors focus-ring py-2 px-3 sm:px-4 bg-white/90 backdrop-blur-sm rounded-lg border-2 border-black shadow-sm hover:bg-white/95"
-            onClick={closeMobileMenu}
           >
             Davion Mack
           </Link>
