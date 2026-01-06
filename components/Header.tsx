@@ -77,7 +77,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMobileMenu}
-            className="md:hidden p-2 bg-white/90 backdrop-blur-sm rounded-lg border-2 border-black shadow-sm hover:bg-white/95 focus-ring"
+            className="md:hidden p-2 text-white focus-ring"
             aria-label="Toggle mobile menu"
             aria-expanded={isMobileMenuOpen}
           >
@@ -92,7 +92,7 @@ export default function Header() {
               {/* About */}
               <Link
                 href="/about"
-                className="block text-charcoal hover:text-gray-600 transition-colors focus-ring p-3 bg-white/90 rounded-lg border-2 border-black shadow-sm hover:bg-white/95 font-medium"
+                className="block text-xl font-serif font-bold text-charcoal hover:text-gray-600 transition-colors focus-ring px-1 py-2"
                 onClick={closeMobileMenu}
               >
                 About
@@ -103,12 +103,11 @@ export default function Header() {
                 href="https://www.instagram.com/davionjmack/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center text-charcoal hover:text-gray-600 transition-colors focus-ring p-3 bg-white/90 rounded-lg border-2 border-black shadow-sm hover:bg-white/95"
+                className="inline-flex items-center text-xl font-serif font-bold text-charcoal hover:text-gray-600 transition-colors focus-ring px-1 py-2"
                 aria-label="Follow Davion Mack on Instagram"
                 onClick={closeMobileMenu}
               >
-                <Instagram size={20} className="mr-3" />
-                <span className="font-medium">Follow on Instagram</span>
+                Instagram
               </a>
             </nav>
           </div>

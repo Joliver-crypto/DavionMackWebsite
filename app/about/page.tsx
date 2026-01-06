@@ -57,7 +57,7 @@ export default function AboutPage() {
           </div>
 
           {/* Actions */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-row flex-wrap gap-4 justify-center items-center">
             {/* CV */}
             <a
               href={aboutData.cv}
