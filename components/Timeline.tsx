@@ -2,6 +2,7 @@
 
 'use client'
 
+import Image from 'next/image'
 import { useRef, useEffect, useState, useCallback } from 'react'
 import TimelineItem from './TimelineItem'
 import { Work } from '@/types/work'
@@ -105,10 +106,27 @@ export default function Timeline({ works }: TimelineProps) {
             >
               <div className="relative mb-6">
                 {/* Placeholder container */}
-                <div className={`${isMobile ? 'w-64 h-64' : 'w-80 h-80'} relative border-2 border-dashed border-gray-300 rounded-sm bg-gray-50 flex items-center justify-center`}>
-                  <div className="text-center text-gray-500">
-                    <div className={`${isMobile ? 'text-lg' : 'text-2xl'} font-serif font-medium mb-2`}>In The Works</div>
-                    <div className={`${isMobile ? 'text-base' : 'text-lg'}`}>Coming Soon</div>
+                <div className={`${isMobile ? 'w-64 h-64' : 'w-80 h-80'} relative rounded-sm overflow-hidden shadow-sm`}>
+                  <Image
+                    src="/placeholders/explore.jpg"
+                    alt="Explore placeholder"
+                    fill
+                    className="object-cover"
+                    sizes={isMobile ? '256px' : '320px'}
+                    priority={false}
+                  />
+                  <div className="absolute inset-0 bg-black/35" aria-hidden="true" />
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-white space-y-2">
+                    <svg
+                      className={`${isMobile ? 'w-9 h-9' : 'w-12 h-12'}`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
+                    </svg>
+                    <div className={`${isMobile ? 'text-xl' : 'text-3xl'} font-serif font-semibold`}>Explore</div>
                   </div>
                 </div>
               </div>
