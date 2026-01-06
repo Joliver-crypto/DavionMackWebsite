@@ -109,7 +109,6 @@ export default function Timeline({ works }: TimelineProps) {
                   <div className="text-center text-gray-500">
                     <div className={`${isMobile ? 'text-lg' : 'text-2xl'} font-serif font-medium mb-2`}>In The Works</div>
                     <div className={`${isMobile ? 'text-base' : 'text-lg'}`}>Coming Soon</div>
-                    <div className={`${isMobile ? 'text-xs' : 'text-sm'} mt-2`}>2025</div>
                   </div>
                 </div>
               </div>

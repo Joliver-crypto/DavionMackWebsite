@@ -64,14 +64,6 @@ export default function Header() {
               <Instagram size={24} />
             </a>
 
-            {/* Shop */}
-            <Link
-              href="/shop"
-              className="text-base lg:text-lg font-medium text-charcoal hover:text-gray-600 transition-colors focus-ring py-2 px-3 lg:px-4 bg-white/90 backdrop-blur-sm rounded-lg border-2 border-black shadow-sm hover:bg-white/95"
-            >
-              Shop
-            </Link>
-
             {/* About */}
             <Link
               href="/about"
@@ -108,15 +100,6 @@ export default function Header() {
                 <Instagram size={20} className="mr-3" />
                 <span className="font-medium">Follow on Instagram</span>
               </a>
-
-              {/* Shop */}
-              <Link
-                href="/shop"
-                className="block text-charcoal hover:text-gray-600 transition-colors focus-ring p-3 bg-white/90 rounded-lg border-2 border-black shadow-sm hover:bg-white/95 font-medium"
-                onClick={closeMobileMenu}
-              >
-                Shop
-              </Link>
 
               {/* About */}
               <Link

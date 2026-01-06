@@ -24,7 +24,7 @@ export default function ShopGrid({ works }: ShopGridProps) {
 
   return (
     <div className="grid-responsive">
-      {availableWorks.map((work) => (
+      {availableWorks.map((work, index) => (
         <div
           key={work.slug}
           className="card overflow-hidden"
@@ -37,7 +37,7 @@ export default function ShopGrid({ works }: ShopGridProps) {
               fill
               className="object-cover"
               sizes="(max-width: 640px) 92vw, (max-width: 1024px) 60vw, 800px"
-              priority
+              priority={index < 2}
             />
           </div>
 

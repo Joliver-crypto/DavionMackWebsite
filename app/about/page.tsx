@@ -3,7 +3,7 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Instagram, Download, ArrowLeft } from 'lucide-react'
+import { Instagram, ArrowLeft } from 'lucide-react'
 import aboutData from '@/data/about.json'
 
 export const metadata: Metadata = {
@@ -48,7 +48,7 @@ export default function AboutPage() {
           </p>
 
           {/* Bio */}
-          <div className="max-w-2xl mx-auto mb-12 text-left">
+          <div className="max-w-2xl mx-auto mb-12 text-left border-l border-gray-300 pl-4 md:pl-6">
             <p className="text-lg text-gray-700 leading-relaxed text-balance">
               {aboutData.bio}
             </p>
@@ -56,14 +56,13 @@ export default function AboutPage() {
 
           {/* Actions */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            {/* CV Download */}
-            <a
-              href={aboutData.cv}
+            {/* CV page with embedded PDF */}
+            <Link
+              href="/cv"
               className="btn-primary inline-flex items-center"
             >
-              <Download size={20} className="mr-2" />
-              Download CV
-            </a>
+              CV
+            </Link>
 
             {/* Instagram */}
             <a

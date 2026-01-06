@@ -120,6 +120,54 @@
     "status": "Not for Sale"
   },
   {
+    "slug": "geocore",
+    "title": "Geocore",
+    "year": 2025,
+    "materials": "Steel, metamorphic schist stone",
+    "dimensions": "",
+    "cover": "/placeholders/work16.JPG",
+    "images": ["/placeholders/work16.JPG"],
+    "forSale": false,
+    "price": 0,
+    "status": "Not for Sale"
+  },
+  {
+    "slug": "sponch",
+    "title": "Sponch",
+    "year": 2025,
+    "materials": "Steel, stone",
+    "dimensions": "",
+    "cover": "/placeholders/work15.jpg",
+    "images": ["/placeholders/work15.jpg"],
+    "forSale": false,
+    "price": 0,
+    "status": "Not for Sale"
+  },
+  {
+    "slug": "orison",
+    "title": "Orison",
+    "year": 2025,
+    "materials": "Steel, sedimentary sandstone",
+    "dimensions": "",
+    "cover": "/placeholders/work14.JPG",
+    "images": ["/placeholders/work14.JPG"],
+    "forSale": false,
+    "price": 0,
+    "status": "Not for Sale"
+  },
+  {
+    "slug": "starbirth",
+    "title": "Starbirth",
+    "year": 2025,
+    "materials": "Steel, metamorphic stone",
+    "dimensions": "",
+    "cover": "/placeholders/work13.JPG",
+    "images": ["/placeholders/work13.JPG"],
+    "forSale": false,
+    "price": 0,
+    "status": "Not for Sale"
+  },
+  {
     "slug": "pack-me-up-ship-me-out",
     "title": "Pack me up, Ship me out",
     "year": 2025,
