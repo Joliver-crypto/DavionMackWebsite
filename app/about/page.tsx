@@ -13,10 +13,10 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-white">
-      <div className="container-responsive py-16">
+    <div className="min-h-screen bg-transparent">
+      <div className="container-responsive pt-4 pb-16">
         {/* Home Navigation */}
-        <div className="mb-12">
+        <div className="mb-6">
           <Link
             href="/"
             className="inline-flex items-center text-charcoal hover:text-gray-600 transition-colors focus-ring p-2 rounded-full hover:bg-gray-100 transition-colors"
@@ -47,32 +47,33 @@ export default function AboutPage() {
             {aboutData.degreeLine}
           </p>
 
-          {/* Bio */}
-          <div className="max-w-2xl mx-auto mb-12 text-left border-l border-gray-300 pl-4 md:pl-6">
-            <p className="text-lg text-gray-700 leading-relaxed text-balance">
-              {aboutData.bio}
-            </p>
+          {/* Bio with left accent line */}
+          <div className="max-w-2xl mx-auto mb-12 text-left">
+            <div className="border-l border-black pl-6">
+              <p className="text-lg text-gray-700 leading-relaxed text-balance">
+                {aboutData.bio}
+              </p>
+            </div>
           </div>
 
           {/* Actions */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            {/* CV page with embedded PDF */}
-            <Link
-              href="/cv"
-              className="btn-primary inline-flex items-center"
+            {/* CV */}
+            <a
+              href={aboutData.cv}
+              className="inline-flex items-center justify-center text-xl md:text-2xl font-serif font-bold text-charcoal hover:text-gray-600 transition-colors focus-ring px-2"
             >
               CV
-            </Link>
+            </a>
 
             {/* Instagram */}
             <a
               href={aboutData.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-secondary inline-flex items-center"
+              className="inline-flex items-center justify-center text-xl md:text-2xl font-serif font-bold text-charcoal hover:text-gray-600 transition-colors focus-ring px-2"
             >
-              <Instagram size={20} className="mr-2" />
-              Follow on Instagram
+            Instagram
             </a>
           </div>
         </div>

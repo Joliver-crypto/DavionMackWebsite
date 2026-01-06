@@ -63,12 +63,19 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className={inter.className}>
-        <Header />
-        <main className="pt-20">
-          {children}
-        </main>
-        <Analytics />
+      <body className={`${inter.className} relative`}>
+        {/* Global subtle overlay */}
+        <div
+          className="pointer-events-none fixed inset-0 bg-black/10 z-0"
+          aria-hidden="true"
+        />
+        <div className="relative z-10">
+          <Header />
+          <main>
+            {children}
+          </main>
+          <Analytics />
+        </div>
       </body>
     </html>
   )

@@ -38,39 +38,40 @@ export default function Header() {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 border-b border-gray-200 bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: 'url(/placeholders/pastelbackground.png)' }}
+      className="fixed top-0 left-0 right-0 z-50 border-b border-gray-200 bg-cover bg-center bg-no-repeat relative"
+      style={{ backgroundImage: 'url(/placeholders/header.png)' }}
     >
-      <div className="container-responsive">
+      <div className="absolute inset-0 bg-black/35 pointer-events-none" aria-hidden="true" />
+      <div className="container-responsive relative">
         <div className="flex justify-between items-center h-16">
           {/* Left side - Davion Mack */}
           <Link 
             href="/" 
-            className="text-xl sm:text-2xl font-serif font-semibold text-charcoal hover:text-gray-600 transition-colors focus-ring py-2 px-3 sm:px-4 bg-white/90 backdrop-blur-sm rounded-lg border-2 border-black shadow-sm hover:bg-white/95"
+            className="text-2xl sm:text-3xl font-serif font-bold text-white drop-shadow-md focus-ring py-2 px-1"
           >
             Davion Mack
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-4 lg:space-x-8">
+          <nav className="hidden md:flex items-center space-x-7 lg:space-x-12">
+            {/* About */}
+            <Link
+              href="/about"
+              className="text-xl lg:text-2xl font-serif font-bold text-white hover:opacity-80 transition-colors focus-ring py-2 px-2 drop-shadow-md"
+            >
+              About
+            </Link>
+
             {/* Instagram */}
             <a
               href="https://www.instagram.com/davionjmack/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-charcoal hover:text-gray-600 transition-colors focus-ring p-2 bg-white/90 backdrop-blur-sm rounded-lg border-2 border-black shadow-sm hover:bg-white/95"
+              className="text-white hover:opacity-80 transition-colors focus-ring p-3"
               aria-label="Follow Davion Mack on Instagram"
             >
-              <Instagram size={24} />
+              <Instagram size={28} strokeWidth={2.5} />
             </a>
-
-            {/* About */}
-            <Link
-              href="/about"
-              className="text-base lg:text-lg font-medium text-charcoal hover:text-gray-600 transition-colors focus-ring py-2 px-3 lg:px-4 bg-white/90 backdrop-blur-sm rounded-lg border-2 border-black shadow-sm hover:bg-white/95"
-            >
-              About
-            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -88,6 +89,15 @@ export default function Header() {
         {isMobileMenuOpen && (
           <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-lg">
             <nav className="container-responsive py-4 space-y-3">
+              {/* About */}
+              <Link
+                href="/about"
+                className="block text-charcoal hover:text-gray-600 transition-colors focus-ring p-3 bg-white/90 rounded-lg border-2 border-black shadow-sm hover:bg-white/95 font-medium"
+                onClick={closeMobileMenu}
+              >
+                About
+              </Link>
+
               {/* Instagram */}
               <a
                 href="https://www.instagram.com/davionjmack/"
@@ -100,15 +110,6 @@ export default function Header() {
                 <Instagram size={20} className="mr-3" />
                 <span className="font-medium">Follow on Instagram</span>
               </a>
-
-              {/* About */}
-              <Link
-                href="/about"
-                className="block text-charcoal hover:text-gray-600 transition-colors focus-ring p-3 bg-white/90 rounded-lg border-2 border-black shadow-sm hover:bg-white/95 font-medium"
-                onClick={closeMobileMenu}
-              >
-                About
-              </Link>
             </nav>
           </div>
         )}
